@@ -1,0 +1,40 @@
+{% extends 'core/navbar.html' %}
+   {% block content %}
+
+<div class="container text-center mt-5">
+
+    <h3>Total: ₹{{ total }}</h3>
+
+    <button id="rzp-btn" class="btn btn-success mt-3">Pay Now</button>
+
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script>
+var options = {
+    key: "{{key}}",
+    amount: "{{payment.amount}}",
+    currency: "INR",
+    name: "My Shop",
+    description: "Test Payment",
+    order_id: "{{payment.id}}",
+
+    redirect: true,
+
+    callback_url: "http://127.0.0.1:8000/payment-success/"
+
+    // handler: function (response){
+    //     window.location.href="/success/";
+    // }
+
+};
+
+var rzp = new Razorpay(options);
+
+document.getElementById('rzp-btn').onclick = function(e){
+    rzp.open();
+    e.preventDefault();
+}
+</script>
+</div>
+
+   {% endblock %}

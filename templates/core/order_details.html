@@ -1,0 +1,30 @@
+{% extends 'core/navbar.html' %}
+
+   {% block content %}
+       <h2>Orders: {{order.id}}</h2>
+    <table class="table table-bordered table-hover table-info">
+
+        <tr>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Quantity</th>
+        </tr>
+
+        {% for ab in data %}
+
+         <tr>
+            <td>{{ab.product.name}}</td>
+            <td>{{ab.product.price}}</td>
+            <td>{{ab.quantity}}</td>
+         </tr>
+
+
+        {% endfor %}
+
+    </table>
+
+    <h3>Total: {{order.total}}</h3>
+        
+  
+
+   {% endblock content %}

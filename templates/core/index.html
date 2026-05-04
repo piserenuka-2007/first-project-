@@ -1,0 +1,44 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>index</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</head>
+<body>  
+  
+{% extends 'core/navbar.html' %}
+
+   {% block content %}
+      <div class="container md-4">
+    <h2 class="text-center text-danger">Our Products</h2>
+
+    <div class="row ">
+       {% for product in products %}
+      <div class="col-md-3 col-sm-6">
+      <div class="card h-100 " >
+      <img src="{{product.image.url}}" class="card-img-top"  style="height: 200px;">
+       <div class="card-body bg-warning">
+          <h5>Product Name:- {{product.name}}</h5>
+          <p>Price:- {{product.price}}</p>
+          <p>Descriptions:-{{product.description}}</p>
+          <a href="{% url 'product_details' product.id %}" class="btn btn-success">view details</a>
+          <a href="{% url 'add_to_cart' product.id %}" class="btn btn-primary">Add to Cart</a>
+
+       
+       </div>
+       </div>
+      </div>
+       {% endfor %}
+    </div>
+</div>
+
+{% endblock content%}
+
+
+</body>
+</html> 

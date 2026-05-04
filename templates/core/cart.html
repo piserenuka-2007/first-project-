@@ -1,0 +1,55 @@
+{% extends 'core/navbar.html' %}
+
+   {% block content %}
+      <div class="container md-4">
+    <h2 class="text-center text-danger">Cart Items</h2>
+
+    {% if cart_items %}
+    <table class="table table-bordered table-hover table-warning">
+
+        <thead>
+            <tr class="text-center">
+                <th>Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Remove</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data in cart_items %}
+            <tr class="text-center">
+                <td>{{data.product.name}}</td>
+                <td>{{data.product.price}}</td>
+
+                <td><a href="{% url 'qty_decrease' data.id%}" class="btn btn-danger">-</a>
+
+                {{data.quantity}}
+
+                <a href="{% url 'qty_increase' data.id%}" class="btn btn-success">+</a>
+
+                <td>
+                    <a href="{% url 'remove' data.id%}" class="btn btn-danger">Remove</a>
+                </td>
+
+            </tr>
+
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Total: {{total}}</h2>
+
+    <a href="{% url 'checkout' %}" class="btn btn-primary">Proceed to checkout</a>
+
+    {% else %}
+
+    <div class="text-center">
+        <h2>Data Not Found</h2>
+
+    <a href="/" class="btn btn-success m-3">Continue Shopping</a>
+    </div>
+    
+</div>
+
+{% endif %}
+{% endblock content%}

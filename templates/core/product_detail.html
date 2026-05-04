@@ -1,0 +1,41 @@
+{% extends 'core/navbar.html' %}
+
+{% block content %}
+
+<h2 class="text-center text-danger">Product Details</h2>
+
+<div class="container ">
+<div class="row">
+<div class="col-md-4 mx-auto">
+
+<div class="card bg-warning ">
+<img src="{{data.image.url}}" class="card-img-top">
+
+<div class="card-body">
+<h5>{{data.name}}</h5>
+<p>Price : {{data.price}}</p>
+<p>{{data.description}}</p>
+
+<a href="{% url 'add_to_cart' data.id %}" 
+class="btn btn-primary">
+Add To Cart
+</a>
+
+</div>
+</div>
+
+</div>
+</div>
+</div>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+

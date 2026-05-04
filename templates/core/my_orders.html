@@ -1,0 +1,40 @@
+{% extends 'core/navbar.html' %}
+
+   {% block content %}
+       
+   <h2 class="text-center text-success">My Orders</h2>
+
+   {% if orders %}
+     
+      <table class="table table-bordered table-hover table-primary">
+        <tr>
+        <th>Id</th>
+        <th>User</th>
+        <th>Total</th>
+        <th>Date</th>
+        <th>Views</th>
+        <th>Status</th>
+        </tr>
+        
+      {% for xyz in orders %}
+        <tr>
+            <td>{{xyz.id}}</td>
+            <td>{{xyz.user}}</td>
+            <td>{{xyz.total}}</td>
+            <td>{{xyz.created_at}}</td>
+            <td>{{xyz.status}}</td>
+            <td>
+              <a href="{% url 'order_details' xyz.id %}" class="btn btn-success">View</a>  
+            </td>
+             
+        </tr>
+      {% endfor %}
+    </table>
+
+    {% else %}
+
+    <h3 class="text-center text-primary">No orders yet</h3>
+
+    {% endif %}
+
+   {% endblock content %}
